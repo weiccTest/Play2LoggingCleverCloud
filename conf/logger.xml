@@ -1,0 +1,72 @@
+<configuration>
+
+    <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel" />
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home}/logs/application.log</file>
+        <encoder>
+            <pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%coloredLevel %logger{15} - %message%n%xException{5}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="IPLOG" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home}/logs/ips.log</file>
+        <encoder>
+            <pattern>[%date] %message%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERRORLOG" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home}/logs/error.log</file>
+        <encoder>
+            <pattern>[%date] %message%n%xException%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="COUPONLOG" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home}/logs/coupons.log</file>
+        <encoder>
+            <pattern>[%date] %message%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="RATINGSLOG" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home}/logs/ratings.log</file>
+        <encoder>
+            <pattern>[%date] %message%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="play" level="INFO" />
+
+    <logger name="application" level="INFO" />
+
+    <logger name="iplog" level="INFO">
+        <appender-ref ref="IPLOG" />
+    </logger>
+
+    <logger name="couponlog" level="INFO">
+        <appender-ref ref="COUPONLOG" />
+    </logger>
+
+    <logger name="ratingslog" level="INFO">
+        <appender-ref ref="RATINGSLOG" />
+    </logger>
+
+
+    <logger name="errorlog" level="ERROR">
+        <appender-ref ref="ERRORLOG" />
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
